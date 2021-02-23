@@ -1,5 +1,4 @@
 import { NextPage } from 'next';
-import React from 'react';
 import classes from '../styles/components/ExperienceBar.module.scss';
 
 export const ExperienceBar: NextPage = () => {
@@ -8,7 +7,7 @@ export const ExperienceBar: NextPage = () => {
       <span>0 xp</span>
 
       <div>
-        <div style={{ width: '50%' }}></div>
+        <div style={{ width: '50%' }} />
 
         <span
           className={classes.experienceBar_currentExperience}

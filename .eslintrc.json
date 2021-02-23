@@ -58,7 +58,12 @@
             "allowConciseArrowFunctionExpressionsStartingWithVoid": true
           }
         ],
-        "prettier/prettier": ["error", {}, { "usePrettierrc": true }] // Includes .prettierrc.js rules
+        "prettier/prettier": ["error", {}, { "usePrettierrc": true }], // Includes .prettierrc.js rules
+        // Empty components? Self close them!
+        "react/self-closing-comp": [
+          "error",
+          { "component": true, "html": true }
+        ]
       }
     }
   ]
