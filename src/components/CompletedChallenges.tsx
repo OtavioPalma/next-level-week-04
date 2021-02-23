@@ -1,5 +1,4 @@
 import { NextPage } from 'next';
-import React from 'react';
 import classes from '../styles/components/CompletedChallenges.module.scss';
 
 export const CompletedChallenges: NextPage = () => {
