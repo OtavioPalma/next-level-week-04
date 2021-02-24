@@ -53,6 +53,7 @@ export const Countdown: NextPage = () => {
       {hasFinished ? (
         <button disabled className={classes.countdown_button}>
           Ciclo encerrado
+          <img src="icons/checked.svg" alt="finished cicle" />
         </button>
       ) : isActive ? (
         <button
@@ -61,6 +62,7 @@ export const Countdown: NextPage = () => {
           onClick={handleResetCountdown}
         >
           Abandonar ciclo
+          <img src="icons/minus.svg" alt="end cicle" />
         </button>
       ) : (
         <button
@@ -69,6 +71,7 @@ export const Countdown: NextPage = () => {
           onClick={handleCountdown}
         >
           Iniciar um ciclo
+          <img src="icons/plus.svg" alt="start cicle" />
         </button>
       )}
     </Fragment>
