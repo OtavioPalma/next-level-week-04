@@ -1,10 +1,13 @@
 import { NextPage } from 'next';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
+import { ChallengesContext } from '../contexts/ChallengesContext';
 import classes from '../styles/components/Countdown.module.scss';
 
 let countdownTimeout: NodeJS.Timeout;
 
 export const Countdown: NextPage = () => {
+  const { startNewChallenge } = useContext(ChallengesContext);
+
   const [time, setTime] = useState(0.1 * 60);
   const [isActive, setIsActive] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
@@ -31,8 +34,9 @@ export const Countdown: NextPage = () => {
     } else if (isActive && time === 0) {
       setHasFinished(true);
       setIsActive(false);
+      startNewChallenge();
     }
-  }, [isActive, time]);
+  }, [isActive, time, startNewChallenge]);
 
   return (
     <Fragment>

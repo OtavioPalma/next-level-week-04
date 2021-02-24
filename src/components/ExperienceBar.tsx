@@ -1,23 +1,33 @@
 import { NextPage } from 'next';
+import { useContext } from 'react';
+import { ChallengesContext } from '../contexts/ChallengesContext';
 import classes from '../styles/components/ExperienceBar.module.scss';
 
 export const ExperienceBar: NextPage = () => {
+  const { currentExperience, experienceToNextLevel } = useContext(
+    ChallengesContext,
+  );
+
+  const percentToNextLevel = Math.round(
+    (currentExperience / experienceToNextLevel) * 100,
+  );
+
   return (
     <header className={classes.experienceBar}>
       <span>0 xp</span>
 
       <div>
-        <div style={{ width: '50%' }} />
+        <div style={{ width: `${percentToNextLevel}%` }} />
 
         <span
           className={classes.experienceBar_currentExperience}
-          style={{ left: '50%' }}
+          style={{ left: `${percentToNextLevel}%` }}
         >
-          300px
+          {currentExperience} xp
         </span>
       </div>
 
-      <span>600 xp</span>
+      <span>{experienceToNextLevel} xp</span>
     </header>
   );
 };

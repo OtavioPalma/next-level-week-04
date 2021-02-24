@@ -1,28 +1,33 @@
 import { NextPage } from 'next';
+import { useContext } from 'react';
+import { ChallengesContext } from '../contexts/ChallengesContext';
 import classes from '../styles/components/ChallengeBox.module.scss';
 
 export const ChallengeBox: NextPage = () => {
-  const hasActiveChallenge = true;
+  const { activeChallenge, handleResetChallenge } = useContext(
+    ChallengesContext,
+  );
 
   return (
     <div className={classes.challengeBox}>
-      {hasActiveChallenge ? (
+      {activeChallenge ? (
         <div className={classes.challengeBox_active}>
-          <header>Ganhe 400 xp</header>
+          <header>Ganhe {activeChallenge.amount} xp</header>
 
           <main>
-            <img src="icons/body.svg" alt="workout" />
+            <img src={`icons/${activeChallenge.type}.svg`} alt="workout" />
 
             <strong>Novo desafio</strong>
 
-            <p>
-              Caminhe por 3 minutos e estique suas pernas para você ficar
-              saudável!
-            </p>
+            <p>{activeChallenge.description}</p>
           </main>
 
           <footer>
-            <button type="button" className={classes.challengeBox_failedButton}>
+            <button
+              type="button"
+              className={classes.challengeBox_failedButton}
+              onClick={handleResetChallenge}
+            >
               Falhei
             </button>
 
