@@ -5,6 +5,7 @@ import { CompletedChallenges } from '../components/CompletedChallenges';
 import { Countdown } from '../components/Countdown';
 import { ExperienceBar } from '../components/ExperienceBar';
 import { Profile } from '../components/Profile';
+import { CountdownProvider } from '../contexts/CountdownContext';
 import classes from '../styles/pages/Home.module.scss';
 
 export const Home: NextPage = () => {
@@ -16,17 +17,19 @@ export const Home: NextPage = () => {
 
       <ExperienceBar />
 
-      <section>
-        <div className={classes.container_profile}>
-          <Profile />
-          <CompletedChallenges />
-          <Countdown />
-        </div>
+      <CountdownProvider>
+        <section>
+          <div className={classes.container_profile}>
+            <Profile />
+            <CompletedChallenges />
+            <Countdown />
+          </div>
 
-        <div>
-          <ChallengeBox />
-        </div>
-      </section>
+          <div>
+            <ChallengeBox />
+          </div>
+        </section>
+      </CountdownProvider>
     </div>
   );
 };

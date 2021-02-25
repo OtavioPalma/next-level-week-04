@@ -17,11 +17,19 @@ export const ExperienceBar: NextPage = () => {
       <span>0 xp</span>
 
       <div>
-        <div style={{ width: `${percentToNextLevel}%` }} />
+        <div
+          style={{
+            width: `${percentToNextLevel}%`,
+            transition: 'all 1s ease-in-out',
+          }}
+        />
 
         <span
           className={classes.experienceBar_currentExperience}
-          style={{ left: `${percentToNextLevel}%` }}
+          style={{
+            left: `${percentToNextLevel}%`,
+            transition: 'all 1s ease-in-out',
+          }}
         >
           {currentExperience} xp
         </span>

@@ -1,42 +1,20 @@
 import { NextPage } from 'next';
-import { Fragment, useContext, useEffect, useState } from 'react';
-import { ChallengesContext } from '../contexts/ChallengesContext';
+import { Fragment, useContext } from 'react';
+import { CountdownContext } from '../contexts/CountdownContext';
 import classes from '../styles/components/Countdown.module.scss';
 
-let countdownTimeout: NodeJS.Timeout;
-
 export const Countdown: NextPage = () => {
-  const { startNewChallenge } = useContext(ChallengesContext);
-
-  const [time, setTime] = useState(0.1 * 60);
-  const [isActive, setIsActive] = useState(false);
-  const [hasFinished, setHasFinished] = useState(false);
-
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
+  const {
+    isActive,
+    hasFinished,
+    minutes,
+    seconds,
+    handleCountdown,
+    handleResetCountdown,
+  } = useContext(CountdownContext);
 
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('');
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
-
-  const handleResetCountdown = (): void => {
-    clearTimeout(countdownTimeout);
-    setIsActive(false);
-    setTime(25 * 60);
-  };
-
-  const handleCountdown = (): void => {
-    setIsActive(true);
-  };
-
-  useEffect(() => {
-    if (isActive && time > 0) {
-      countdownTimeout = setTimeout(() => setTime(time - 1), 1000);
-    } else if (isActive && time === 0) {
-      setHasFinished(true);
-      setIsActive(false);
-      startNewChallenge();
-    }
-  }, [isActive, time, startNewChallenge]);
 
   return (
     <Fragment>
